@@ -59,7 +59,7 @@ class OrderController extends Controller
         if (auth()->user()->id == $order->user_id) {
             return new OrderResource($order);
         }
-        return response('no maitro', 403);
+        return response('no autorizado ', 403);
     }
 
     /**

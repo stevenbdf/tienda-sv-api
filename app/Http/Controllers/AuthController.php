@@ -15,7 +15,10 @@ class AuthController extends Controller
         $type_guard = false;
         if(Admin::whereEmail($request->email)->first()){
             $type_guard='admins';
-        }else if(User::whereEmail($request->email)->first()){
+        }else if($user = User::whereEmail($request->email)->first()){
+            if($user->status=='inactive'){
+                return response()->json(['message' => 'Su cuenta ha sido desactivada por falta de uso'], 401);
+            }
             $type_guard='users';
         }
         if ($type_guard!=false && Auth::guard($type_guard)->attempt($credentials)) {

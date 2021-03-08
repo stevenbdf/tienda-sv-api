@@ -15,9 +15,7 @@ class AddressController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $addreses = Address::where('user_id', $id)->orderBy('created_at')->get();
-        return addressResource::collection($addreses);
+        return addressResource::collection(auth()->user()->addresses);
     }
 
     /**
@@ -28,14 +26,14 @@ class AddressController extends Controller
      */
     public function store(Request $request)
     {
-        $id = auth()->user()->id;
-        $addreses=Address::where('user_id',$id)->get();
-        if($addreses->count<3){
-            Address::insertGetId(['user_id'=>$id,'created_at'=>now(),'updated_at'=>now(),'address'=>$request['address'],'municipality'=>$request['municipality']]);
-            return new addressResource()
-        }else{
-            return response('muchas direcciones');
-        }
+        // $id = auth()->user()->id;
+        // $addreses=Address::where('user_id',$id)->get();
+        // if($addreses->count<3){
+        //     Address::insertGetId(['user_id'=>$id,'created_at'=>now(),'updated_at'=>now(),'address'=>$request['address'],'municipality'=>$request['municipality']]);
+        //     return new addressResource()
+        // }else{
+        //     return response('muchas direcciones');
+        // }
     }
 
     /**
