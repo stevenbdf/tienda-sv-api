@@ -16,7 +16,7 @@
         "laravel/sanctum": "^2.9",
         "laravel/tinker": "^2.5",
         "spatie/laravel-permission": "^4.0",
-        "fakerphp/faker": "^1.9.1",
+        "fakerphp/faker": "^1.9.1"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
