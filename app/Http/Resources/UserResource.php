@@ -19,7 +19,7 @@ class UserResource extends JsonResource
             'name'=>$this->name,
             'email'=>$this->email,
             'phone'=>$this->phone,
-            'addresses'=> addressResource::collection($this->addresses),
+            'addresses'=> AddressResource::collection($this->addresses),
         ];
     }
 }
