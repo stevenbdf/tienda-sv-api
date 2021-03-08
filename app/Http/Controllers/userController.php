@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-class userController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -30,17 +30,17 @@ class userController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
         if(!User::where('email',$request['email'])->first()){
             if(!User::where('phone',$request['phone'])->first()){
                 $user_id = User::insertGetId(['name'=>$request['name'],'email'=>$request['email'],'email_verified_at'=>now(),'phone'=>$request['phone'],'password'=>Hash::make($request['password']),'remember_token'=>Str::random(10),'created_at'=>now(),'updated_at'=>now()]);
                 return $user_id;
-            }else{  
+            }else{
                 return response('ya hay un telefono registrado');
             }
         }else{
             return response('Ya hay un correo registrado');
-        } 
+        }
     }
 
     /**
@@ -75,13 +75,13 @@ class userController extends Controller
                     User::where('id',$id)->update(['name'=>$request->name,'email'=>$request->email,'phone'=>$request->phone,'updated_at'=>now()]);
                     $user->refresh();
                     return new UserResource($user);
-                } 
-            }else{  
+                }
+            }else{
                 return response('ya hay un telefono registrado');
             }
         }else{
             return response('ya hay un email registrado');
-        }   
+        }
     }
     /**
      * Remove the specified resource from storage.
@@ -91,6 +91,6 @@ class userController extends Controller
      */
     public function destroy(User $user)
     {
-        
+
     }
 }

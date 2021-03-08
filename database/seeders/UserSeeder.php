@@ -23,7 +23,6 @@ class UserSeeder extends Seeder
             'email_verified_at' => now(),
             'password' => Hash::make('123'), // password
             'remember_token' => Str::random(10),
-            
             ]);
     }
 }

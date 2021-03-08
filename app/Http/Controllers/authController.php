@@ -7,10 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class authController extends Controller
+class AuthController extends Controller
 {
     public function login(Request $request)
-    {   
+    {
         $credentials = $request->only('email', 'password');
         $type_guard = false;
         if(Admin::whereEmail($request->email)->first()){
@@ -35,7 +35,7 @@ class authController extends Controller
 
         return response()->json(['message' => 'logged out'], 401);
     }
-    
+
 }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\userController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +23,8 @@ Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'orders' => OrderController::class,
-        'users' => userController::class
+        'users' => UserController::class
     ]);
 });
 
-Route::post('/register',[userController::class,'store']);
+Route::post('/register', [UserController::class, 'store']);

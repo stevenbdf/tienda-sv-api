@@ -13,7 +13,7 @@ class OrderFactory extends Factory
      *
      * @var string
      */
-    protected $model = order::class;
+    protected $model = Order::class;
 
     /**
      * Define the model's default state.
@@ -25,6 +25,6 @@ class OrderFactory extends Factory
         $users = User::pluck('id')->toArray();
         return [
             'user_id' => $this->faker->randomElement($users),
-        ]; 
+        ];
     }
 }

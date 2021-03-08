@@ -12,7 +12,7 @@ class CategoryFactory extends Factory
      *
      * @var string
      */
-    protected $model = category::class;
+    protected $model = Category::class;
 
     /**
      * Define the model's default state.
@@ -22,9 +22,9 @@ class CategoryFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> $this->faker->text,
-            'slug'=>$this->faker->slug,
-            'img'=>$this->faker->imageUrl,
+            'name' => $this->faker->text,
+            'slug' => $this->faker->slug,
+            'img' => $this->faker->imageUrl,
         ];
     }
 }
