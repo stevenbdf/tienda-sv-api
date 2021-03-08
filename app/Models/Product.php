@@ -18,16 +18,16 @@ class Product extends Model
         'stock_qty'
     ];
 
-    public function order(){
+    public function orders(){
         return $this-> belongsToMany(
-            order::class,
+            Order::class,
             'order_product',
-            'order_id',
-            'product_id'
+            'product_id',
+            'order_id'
         );
     }
 
-    public function category(){
+    public function categories(){
         return $this-> belongsToMany(
             category::class,
             'category_product',

@@ -13,7 +13,7 @@ class AddressFactory extends Factory
      *
      * @var string
      */
-    protected $model = address::class;
+    protected $model = Address::class;
 
     /**
      * Define the model's default state.
@@ -21,13 +21,12 @@ class AddressFactory extends Factory
      * @return array
      */
     public function definition()
-    {   
-        $user_id=User::factory()->create()->id;
+    {
+        $user_id = User::factory()->create()->id;
         return [
-            'user_id' =>$user_id,
-            'address'=> $this->faker->streetAddress,
-            'municipality'=> $this ->faker->country,
-        ];  
-
+            'user_id' => $user_id,
+            'address' => $this->faker->streetAddress,
+            'municipality' => $this->faker->country,
+        ];
     }
 }

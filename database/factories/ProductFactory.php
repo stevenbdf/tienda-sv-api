@@ -12,7 +12,7 @@ class ProductFactory extends Factory
      *
      * @var string
      */
-    protected $model = product::class;
+    protected $model = Product::class;
 
     /**
      * Define the model's default state.
@@ -22,12 +22,12 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'name'=> $this->faker->text,
-            'img'=>$this->faker->imageUrl,
-            'description'=>$this->faker->text,
-            'regular_price'=>$this->faker->randomFloat(2,0,10000),
-            'sale_price'=>$this->faker->randomFloat(2,0,10000),
-            'stock_qty'=>$this->faker->randomNumber(2),
+            'name' => $this->faker->text,
+            'img' => $this->faker->imageUrl,
+            'description' => $this->faker->text,
+            'regular_price' => $this->faker->randomFloat(2, 0, 10000),
+            'sale_price' => $this->faker->randomFloat(2, 0, 10000),
+            'stock_qty' => $this->faker->randomNumber(2),
         ];
     }
 }
