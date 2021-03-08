@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AddressController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
@@ -23,7 +24,8 @@ Route::middleware('auth:sanctum')->get('/me', function (Request $request) {
 Route::middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'orders' => OrderController::class,
-        'users' => UserController::class
+        'users' => UserController::class,
+        'addresses'=>AddressController::class
     ]);
 });
 
