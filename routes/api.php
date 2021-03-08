@@ -25,7 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResources([
         'orders' => OrderController::class,
         'users' => UserController::class,
-        'addresses'=>AddressController::class
+        'addresses' => AddressController::class,
     ]);
 });
 
