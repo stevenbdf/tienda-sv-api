@@ -63,9 +63,9 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-       $user->update($request->all());
-       $user->refresh();    
-       return new UserResource($user);
+        $user->update($request->all());
+        $user->refresh();
+        return new UserResource($user);
     }
     /**
      * Remove the specified resource from storage.
@@ -75,7 +75,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->update(['status'=>'inactive']);
+        $user->update(['status' => 'inactive']);
         return new UserResource($user);
     }
 }
