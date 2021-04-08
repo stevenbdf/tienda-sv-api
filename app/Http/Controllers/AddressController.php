@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Address\AddressRequest;
 use App\Http\Resources\AddressResource;
 use App\Models\Address;
 use Illuminate\Http\Request;
@@ -24,16 +25,22 @@ class AddressController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AddressRequest $request)
     {
-        // $id = auth()->user()->id;
-        // $addreses=Address::where('user_id',$id)->get();
-        // if($addreses->count<3){
-        //     Address::insertGetId(['user_id'=>$id,'created_at'=>now(),'updated_at'=>now(),'address'=>$request['address'],'municipality'=>$request['municipality']]);
-        //     return new AddressResource()
-        // }else{
-        //     return response('muchas direcciones');
-        // }
+        $id = auth()->user()->id;
+        $addreses = Address::where('user_id', $id)->get();
+        if ($addreses->count() < 3) {
+            Address::insertGetId([
+                'user_id' => $id,
+                'created_at' => now(),
+                'updated_at' => now(),
+                'address' => $request['address'],
+                'municipality' => $request['municipality']
+            ]);
+            return AddressResource::collection(auth()->user()->addresses);
+        } else {
+            return response('muchas direcciones');
+        }
     }
 
     /**
@@ -57,9 +64,11 @@ class AddressController extends Controller
      * @param  \App\Models\Address  $address
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Address $address)
+    public function update(AddressRequest $request, Address $address)
     {
-        //
+        $address->update($request->all());
+        $address->refresh();
+        return new AddressResource($address);
     }
 
     /**
@@ -70,6 +79,11 @@ class AddressController extends Controller
      */
     public function destroy(Address $address)
     {
-        //
+        if (Address::where('user_id', auth()->user()->id)->get()->count() > 1) {
+            Address::where('id', $address['id'])->delete();
+            return AddressResource::collection(auth()->user()->addresses);
+        } else {
+            return response('No es posible eliminar todas las direcciones');
+        }
     }
 }
