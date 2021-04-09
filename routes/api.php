@@ -27,10 +27,10 @@ Route::middleware('auth:sanctum')->group(function () {
         'orders' => OrderController::class,
         'users' => UserController::class,
         'addresses' => AddressController::class,
-        'products'=> ProductController::class,
     ]);
+    Route::apiResource('products',ProductController::class)->except(['index']);
 });
 
 Route::post('/register', [UserController::class, 'store']);
 
-Route::post('/productsindex', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'index']);
