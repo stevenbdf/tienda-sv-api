@@ -32,3 +32,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 Route::post('/register', [UserController::class, 'store']);
+
+Route::post('/productsindex', [ProductController::class, 'index']);
