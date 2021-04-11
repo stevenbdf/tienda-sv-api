@@ -16,9 +16,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return ProductResource::collection(Product::paginate(5));
+        if ($request->page) {
+            $per_page = isset($request->per_page) ? $request->per_page : 10;
+
+            return ProductResource::collection(Product::paginate($per_page));
+        }
+
+        return ProductResource::collection(Product::all());
     }
 
     /**
